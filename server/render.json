@@ -1,0 +1,9 @@
+﻿{
+  "buildCommand": "npm install",
+  "startCommand": "node server.js",
+  "healthCheckPath": "/api/health",
+  "envVars": {
+    "NODE_ENV": "production",
+    "PORT": "10000"
+  }
+}
