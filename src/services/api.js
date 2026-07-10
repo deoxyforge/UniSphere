@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:5000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:5000/api',
   headers: {
     'Content-Type': 'application/json'
   }
@@ -80,4 +80,13 @@ export const notificationAPI = {
   markRead: () => API.put('/notifications/read')
 };
 
+export const analyticsAPI = {
+  studentInsights: () => API.get('/analytics/student/insights'),
+  facultyAnalytics: () => API.get('/analytics/faculty'),
+  adminAnalytics: () => API.get('/analytics/admin'),
+  smartSearch: (q, type = 'all') => API.get('/analytics/search', { params: { q, type } }),
+  predictAttendance: (eventId) => API.get(`/analytics/events/${eventId}/predict`)
+};
+
 export default API;
+

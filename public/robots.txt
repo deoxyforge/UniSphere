@@ -1,0 +1,8 @@
+﻿User-agent: *
+Allow: /
+Disallow: /dashboard
+Disallow: /faculty
+Disallow: /admin
+Disallow: /profile
+
+Sitemap: https://unisphere.vercel.app/sitemap.xml
