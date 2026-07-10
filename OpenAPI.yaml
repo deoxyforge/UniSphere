@@ -10,7 +10,7 @@ info:
 servers:
   - url: http://localhost:5000/api
     description: Local development
-  - url: https://your-render-backend.onrender.com/api
+  - url: https://unisphere-server.onrender.com/api
     description: Production (Render)
 
 components:

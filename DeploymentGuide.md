@@ -8,7 +8,7 @@
 4. Framework: Vite (auto-detected)
 5. Build Command: npm run build
 6. Output Directory: dist
-7. Add Environment Variable: VITE_API_URL = https://your-render-backend.onrender.com/api
+7. Add Environment Variable: VITE_API_URL = https://unisphere-server.onrender.com/api
 8. Deploy
 
 ## Backend → Render
