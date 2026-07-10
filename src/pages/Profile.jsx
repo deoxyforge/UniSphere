@@ -1,12 +1,14 @@
 import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { User, BookOpen, Tag, Save, AlertCircle, CheckCircle2 } from 'lucide-react';
+import { User, BookOpen, Tag, Save, AlertCircle, CheckCircle2, FileText, Code } from 'lucide-react';
 
 export default function Profile() {
   const { user, updateProfile } = useContext(AuthContext);
   const [name, setName] = useState(user?.name || '');
   const [department, setDepartment] = useState(user?.department || '');
   const [interests, setInterests] = useState((user?.interests || []).join(', '));
+  const [skills, setSkills] = useState((user?.skills || []).join(', '));
+  const [biography, setBiography] = useState(user?.biography || '');
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -18,7 +20,9 @@ export default function Profile() {
       await updateProfile({
         name,
         department,
-        interests: interests.split(',').map(s => s.trim()).filter(Boolean)
+        interests: interests.split(',').map(s => s.trim()).filter(Boolean),
+        skills: skills.split(',').map(s => s.trim()).filter(Boolean),
+        biography
       });
       setSuccess('Profile updated!');
     } catch (err) {
@@ -67,14 +71,32 @@ export default function Profile() {
           </div>
 
           {user?.role === 'Student' && (
-            <div className="space-y-1">
-              <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Interests (comma-separated)</label>
-              <div className="relative">
-                <Tag className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
-                <input value={interests} onChange={e => setInterests(e.target.value)} placeholder="Coding, Music, Seminar" className="w-full pl-10 pr-4 py-2.5 bg-brand-dark border border-brand-border rounded-lg text-sm text-slate-200 focus:outline-none focus:border-violet-500" />
+            <>
+              <div className="space-y-1">
+                <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Skills (comma-separated)</label>
+                <div className="relative">
+                  <Code className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+                  <input value={skills} onChange={e => setSkills(e.target.value)} placeholder="JavaScript, React, Python" className="w-full pl-10 pr-4 py-2.5 bg-brand-dark border border-brand-border rounded-lg text-sm text-slate-200 focus:outline-none focus:border-violet-500" />
+                </div>
               </div>
-            </div>
+
+              <div className="space-y-1">
+                <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Interests (comma-separated)</label>
+                <div className="relative">
+                  <Tag className="absolute left-3 top-3 h-4 w-4 text-slate-500" />
+                  <input value={interests} onChange={e => setInterests(e.target.value)} placeholder="Coding, Music, Seminar" className="w-full pl-10 pr-4 py-2.5 bg-brand-dark border border-brand-border rounded-lg text-sm text-slate-200 focus:outline-none focus:border-violet-500" />
+                </div>
+              </div>
+            </>
           )}
+
+          <div className="space-y-1">
+            <label className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider">Biography / About Me</label>
+            <div className="relative">
+              <FileText className="absolute left-3 top-3.5 h-4 w-4 text-slate-500" />
+              <textarea value={biography} onChange={e => setBiography(e.target.value)} placeholder="Tell us about yourself..." rows="3" className="w-full pl-10 pr-4 py-2.5 bg-brand-dark border border-brand-border rounded-lg text-sm text-slate-200 focus:outline-none focus:border-violet-500" />
+            </div>
+          </div>
 
           <button type="submit" disabled={saving} className="btn-primary w-full py-2.5 text-sm mt-2">
             <Save className="h-4 w-4" />{saving ? 'Saving...' : 'Save Changes'}
