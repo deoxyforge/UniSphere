@@ -1,23 +1,59 @@
-﻿# UniSphere Version 1.0.0 Release Notes
+﻿# Release Notes
 
-We are excited to announce the official v1.0.0 release of **UniSphere**, a smart campus events and clubs management portal.
+## v1.0.0 — 2026-07-11
 
-## 🚀 Key Highlights
+**Initial Production Release**
 
-1. **Intelligent Recommendation Engine**: Fully localized scoring algorithm recommending events to students based on interests, department, registered events, and joined clubs.
-2. **Attendance Prediction**: Visual prediction rate (percentage) and confidence metrics for faculty using historical attendance, weekday patterns, and event scale.
-3. **Smart Ranked Search**: Multi-keyword scoring system showing ranked results across all approved campus events and clubs.
-4. **Interactive Dashboards**: Role-tailored homepages for Student, Faculty, and Admin users.
-5. **Robust QR Pass System**: Self-service QR pass generation upon registration and instant attendance validation.
-6. **Real-time Notifications**: Triggered on event creation, admin approvals, registrations, and cancellations.
+UniSphere is now live at https://client-neon-sigma-98.vercel.app
 
-## 🛠️ Tech Stack & Security
-- **Frontend**: React 18, Vite 8, Tailwind CSS, Axios, Lucide React, Custom Toast notifications
-- **Backend**: Node.js, Express, JWT, Mongoose, Multer for banner/logo uploads
-- **Database**: Cloud-hosted MongoDB Atlas with secure indices
-- **Security**: Rate limits (200 req/15min), Helmet.js security headers, CORS origin limits
+### What's Included
 
-## 📁 Repository Meta
-- **Description**: Smart Campus Events & Clubs Hub with local AI-powered recommendations, attendance prediction, and QR check-in.
-- **Topics**: react, express, mongodb, campus-management, qr-attendance, smart-recommendation, tailwindcss, vite
-- **Homepage**: https://unisphere.vercel.app
+**Authentication**
+- Student, Faculty, Admin roles
+- JWT with 7-day expiry
+- Bcrypt password hashing
+
+**Events**
+- Full CRUD with image upload
+- Admin approval workflow
+- Student registration with QR pass generation
+- Related events
+
+**Clubs**
+- Full CRUD with image upload
+- Student join/leave
+- Coordinator management
+
+**Attendance**
+- Faculty marks attendance per event
+- Student attendance history
+
+**Notifications**
+- In-app notifications for all major events
+- Mark-all-read
+
+**AI Features (100% local, $0 cost)**
+- Smart event recommendations (multi-factor scoring)
+- Attendance prediction (historical + contextual)
+- TF-IDF smart search
+- Student insights (participation + engagement scores)
+- Faculty per-event analytics
+- Admin platform-wide analytics
+
+**Infrastructure**
+- Frontend: Vercel (React/Vite)
+- Backend: Render (Express/Node.js)
+- Database: MongoDB Atlas
+- Security: Helmet, rate limiting, CORS whitelist
+- SEO: Open Graph, Twitter Card, sitemap, manifest
+
+### Fixed Issues
+- Footer.jsx missing Link import caused blank production page
+- Toast.jsx template literal issue
+- Render deployment was using old commit (pre-server/ folder)
+- VITE_API_URL configured to correct Render URL
+
+### Known Limitations
+- Image uploads use local Multer storage (not persistent on Render free tier)
+- Email notifications require SMTP configuration
+- Real-time features require Socket.io (planned v1.1)
